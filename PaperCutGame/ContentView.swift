@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var endAnimation : Bool = false
+    
     var body: some View {
-        GeometryReader { proxy in
-            let size = proxy.size
-            HomeView(screentSize:size)
+        
+        if endAnimation {
+            GeometryReader { proxy in
+                let size = proxy.size
+                HomeView(screentSize: size)
+            }
+        } else {
+            SplashScreen(endAnimation: $endAnimation)
         }
+ 
     }
 }
 
