@@ -13,111 +13,114 @@ struct HomeView: View {
     @State var offset : CGFloat = 0
     
     var body: some View {
-        VStack {
-            
-            // head
-            Button  {
-            } label: {
-                Image("snowflake")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(Color("Blue"))
-                    .frame(width: 30, height: 30)
+        NavigationView {
+            VStack {
                 
-                Text("Snowflake Paper Cutting Process")
-                    .foregroundColor(.black)
-                    .font(.subheadline.bold())
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            
-            Spacer()
-            
-            // content
-            OffsetPageTabView(offset: $offset) {
-                HStack(spacing: 0) {
-                    ForEach(intros) { intro in
-                        VStack {
-                            Image(intro.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: screentSize.height / 3)
-                            
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text(intro.title)
-                                    .font(.largeTitle.bold())
-                                
-                                Text(intro.description)
-                                    .font(.title3.bold())
-                                    .foregroundColor(.primary)
-                            }
-                            .padding(.top, 60)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .padding()
-                        .frame(width: screentSize.width)
-                    }
+                // head
+                Button  {
+                } label: {
+                    Image("snowflake")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(Color("Blue"))
+                        .frame(width: 30, height: 30)
+                    
+                    Text("Snowflake Paper Cutting Process")
+                        .foregroundColor(.black)
+                        .font(.subheadline.bold())
                 }
-            }
-            
-            Spacer()
-            
-            // foot
-            HStack(alignment:.bottom) {
-                
-                // left index
-                HStack(spacing: 12) {
-                    ForEach(intros.indices, id: \.self) { index in
-                        Capsule()
-                            .fill(.black)
-                            .frame(width: getIndex() == index ? 20 : 7, height: 7)
-                    }
-                }
-                .overlay(
-                    Capsule()
-                        .fill(.black)
-                        .frame(width: 20, height: 7)
-                        .offset(x: getIndicatorOffset())
-                    ,alignment: .leading
-                )
-                .offset(x: 10, y: -15)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
                 
                 Spacer()
                 
-                // right button
-                if getIndex() == intros.count - 1 {
-                    Button  {
-                        let index = min(getIndex() + 1, intros.count - 1)
-                        offset = CGFloat(index) * screentSize.width
-                    } label: {
-                        Text("Start Game!")
-                            .font(.title2.bold())
-                            .foregroundColor(.white)
-                            .padding(20)
-                            .background(
-                                intros[getIndex()].color,
-                                in: RoundedRectangle(cornerRadius: 30)
-                            )
-                    }
-                } else {
-                    Button  {
-                        let index = min(getIndex() + 1, intros.count - 1)
-                        offset = CGFloat(index) * screentSize.width
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .font(.title2.bold())
-                            .foregroundColor(.white)
-                            .padding(20)
-                            .background(intros[getIndex()].color, in: Circle())
+                // content
+                OffsetPageTabView(offset: $offset) {
+                    HStack(spacing: 0) {
+                        ForEach(intros) { intro in
+                            VStack {
+                                Image(intro.image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: screentSize.height / 3)
+                                
+                                VStack(alignment: .leading, spacing: 20) {
+                                    Text(intro.title)
+                                        .font(.largeTitle.bold())
+                                    
+                                    Text(intro.description)
+                                        .font(.title3.bold())
+                                        .foregroundColor(.primary)
+                                }
+                                .padding(.top, 60)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .padding()
+                            .frame(width: screentSize.width)
+                        }
                     }
                 }
                 
+                Spacer()
+                
+                // foot
+                HStack(alignment:.bottom) {
+                    
+                    // left index
+                    HStack(spacing: 12) {
+                        ForEach(intros.indices, id: \.self) { index in
+                            Capsule()
+                                .fill(.black)
+                                .frame(width: getIndex() == index ? 20 : 7, height: 7)
+                        }
+                    }
+                    .overlay(
+                        Capsule()
+                            .fill(.black)
+                            .frame(width: 20, height: 7)
+                            .offset(x: getIndicatorOffset())
+                        ,alignment: .leading
+                    )
+                    .offset(x: 10, y: -15)
+                    
+                    Spacer()
+                    
+                    // right button
+                    if getIndex() == intros.count - 1 {
+                        NavigationLink(destination: GameView(screentSize: screentSize)) {
+                            Text("Start Game!")
+                                .font(.title2.bold())
+                                .foregroundColor(.white)
+                                .padding(20)
+                                .background(
+                                    intros[getIndex()].color,
+                                    in: RoundedRectangle(cornerRadius: 30)
+                                )
+                        }
+                    } else {
+                        Button  {
+                            let index = min(getIndex() + 1, intros.count - 1)
+                            offset = CGFloat(index) * screentSize.width
+                        } label: {
+                            Image(systemName: "chevron.right")
+                                .font(.title2.bold())
+                                .foregroundColor(.white)
+                                .padding(20)
+                                .background(intros[getIndex()].color, in: Circle())
+                        }
+                    }
+                    
+                }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
+            .background(Color("Background"))
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .animation(.easeOut,value: getIndex())
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .background(Color("Background"))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .animation(.easeOut,value: getIndex())
+//        .navigationBarHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
     
     

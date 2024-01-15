@@ -10,6 +10,7 @@
 		713728D82B54697C0069A12F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728D72B54697C0069A12F /* SplashScreen.swift */; };
 		713728DA2B5497D00069A12F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728D92B5497D00069A12F /* GameView.swift */; };
 		713728DC2B54A1E30069A12F /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728DB2B54A1E30069A12F /* GameInfo.swift */; };
+		713728DE2B54CF6C0069A12F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 713728DD2B54CF6C0069A12F /* Launch Screen.storyboard */; };
 		713CD3712B51A7F200C6F2EA /* PaperCutGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CD3702B51A7F200C6F2EA /* PaperCutGameApp.swift */; };
 		713CD3732B51A7F200C6F2EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CD3722B51A7F200C6F2EA /* ContentView.swift */; };
 		713CD3752B51A7F300C6F2EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713CD3742B51A7F300C6F2EA /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		713728D72B54697C0069A12F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		713728D92B5497D00069A12F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		713728DB2B54A1E30069A12F /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		713728DD2B54CF6C0069A12F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		713CD36D2B51A7F200C6F2EA /* PaperCutGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperCutGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713CD3702B51A7F200C6F2EA /* PaperCutGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperCutGameApp.swift; sourceTree = "<group>"; };
 		713CD3722B51A7F200C6F2EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				713CD3742B51A7F300C6F2EA /* Assets.xcassets */,
 				713CD3762B51A7F300C6F2EA /* PaperCutGame.entitlements */,
 				713CD3772B51A7F300C6F2EA /* Preview Content */,
+				713728DD2B54CF6C0069A12F /* Launch Screen.storyboard */,
 			);
 			path = PaperCutGame;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713728DE2B54CF6C0069A12F /* Launch Screen.storyboard in Resources */,
 				713CD3792B51A7F300C6F2EA /* Preview Assets.xcassets in Resources */,
 				713CD3752B51A7F300C6F2EA /* Assets.xcassets in Resources */,
 			);

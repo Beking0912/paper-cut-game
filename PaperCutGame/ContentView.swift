@@ -12,21 +12,19 @@ struct ContentView: View {
     
     var body: some View {
         
-//        GameView()
-        
-                    GeometryReader { proxy in
-                        let size = proxy.size
-                        GameView(screentSize: size)
-                    }
+//                    GeometryReader { proxy in
+//                        let size = proxy.size
+//                        GameView(screentSize: size)
+//                    }
 
-//        if endAnimation {
-//            GeometryReader { proxy in
-//                let size = proxy.size
-//                HomeView(screentSize: size)
-//            }
-//        } else {
-//            SplashScreen(endAnimation: $endAnimation)
-//        }
+        if endAnimation {
+            GeometryReader { proxy in
+                let size = proxy.size
+                HomeView(screentSize: size)
+            }
+        } else {
+            SplashScreen(endAnimation: $endAnimation)
+        }
  
     }
 }

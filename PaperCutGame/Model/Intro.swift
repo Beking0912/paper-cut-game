@@ -22,8 +22,8 @@ var intros : [Intro] = [
     Intro(image: "step4", title: "Step 4", description: "Fold it at another corner.",color: Color("Green")),
     Intro(image: "step5", title: "Step 5", description: "Draw the desired pattern on the paper.",color: Color("Blue")),
     Intro(image: "step6", title: "Step 6", description: "Cut along the traced lines with scissors.",color: Color("Yellow")),
-    Intro(image: "step7", title: "Step 7", description: "Unfold the paper, revealing a symmetrical design.",color: Color("Blue")),
-    Intro(image: "startgame", title: "Unveiling Symmetry", description: "Let's unravel the mystery and make predictions about the symmetrical design that will unfold from our folded creations. Can you discover the correct pattern? \nGive it a try!",color: Color("Red"))
+    Intro(image: "step7", title: "Step 7", description: "Unfold the paper, revealing a symmetrical design.",color: Color("Pink")),
+    Intro(image: "startgame", title: "Unveiling Symmetry", description: "Let's unravel the mystery and make predictions about the symmetrical design that will unfold from our folded creations. Can you discover the correct pattern? \nGive it a try!",color: Color("Green"))
 ]
 
 

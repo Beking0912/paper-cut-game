@@ -85,7 +85,7 @@ struct GameView: View {
                     } label: {
                         Text(!showNextButton ? " "
                              : self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                             ? self.roundNumber != (GameInfos.count - 1)
+                             ? self.roundNumber == (GameInfos.count - 1)
                              ? "👍 Amazing! Completed all levels!"
                              : "🎉 Congratulations! Next round!"
                              : "😊 Sorry, maybe try another one."
