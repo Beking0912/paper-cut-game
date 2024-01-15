@@ -64,8 +64,10 @@ struct HomeView: View {
             
             // foot
             HStack(alignment:.bottom) {
+                
+                // left index
                 HStack(spacing: 12) {
-                    ForEach(intros.indices, id:\.self) { index in
+                    ForEach(intros.indices, id: \.self) { index in
                         Capsule()
                             .fill(.black)
                             .frame(width: getIndex() == index ? 20 : 7, height: 7)
@@ -82,20 +84,36 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                Button  {
-                    let index = min(getIndex() + 1, intros.count - 1)
-                    offset = CGFloat(index) * screentSize.width
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.title2.bold())
-                        .foregroundColor(.white)
-                        .padding(20)
-                        .background(
-                            intros[getIndex()].color,
-                            in: Circle()
-                        )
+                // right button
+                if getIndex() == intros.count - 1 {
+                    Button  {
+                        let index = min(getIndex() + 1, intros.count - 1)
+                        offset = CGFloat(index) * screentSize.width
+                    } label: {
+                        Text("Start Game!")
+                            .font(.title2.bold())
+                            .foregroundColor(.white)
+                            .padding(20)
+                            .background(
+                                intros[getIndex()].color,
+                                in: RoundedRectangle(cornerRadius: 30)
+                            )
+                    }
+                } else {
+                    Button  {
+                        let index = min(getIndex() + 1, intros.count - 1)
+                        offset = CGFloat(index) * screentSize.width
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .font(.title2.bold())
+                            .foregroundColor(.white)
+                            .padding(20)
+                            .background(intros[getIndex()].color, in: Circle())
+                    }
                 }
-            }.padding(.horizontal, 20)
+                
+            }
+            .padding(.horizontal, 20)
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
