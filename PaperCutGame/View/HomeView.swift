@@ -37,18 +37,18 @@ struct HomeView: View {
                 // content
                 OffsetPageTabView(offset: $offset) {
                     HStack(spacing: 0) {
-                        ForEach(intros) { intro in
+                        ForEach(steps) { step in
                             VStack {
-                                Image(intro.image)
+                                Image(step.image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(height: screentSize.height / 3)
                                 
                                 VStack(alignment: .leading, spacing: 20) {
-                                    Text(intro.title)
+                                    Text(step.title)
                                         .font(.largeTitle.bold())
                                     
-                                    Text(intro.description)
+                                    Text(step.description)
                                         .font(.title3.bold())
                                         .foregroundColor(.primary)
                                 }
@@ -68,7 +68,7 @@ struct HomeView: View {
                     
                     // left index
                     HStack(spacing: 12) {
-                        ForEach(intros.indices, id: \.self) { index in
+                        ForEach(steps.indices, id: \.self) { index in
                             Capsule()
                                 .fill(.black)
                                 .frame(width: getIndex() == index ? 20 : 7, height: 7)
@@ -86,27 +86,27 @@ struct HomeView: View {
                     Spacer()
                     
                     // right button
-                    if getIndex() == intros.count - 1 {
+                    if getIndex() == steps.count - 1 {
                         NavigationLink(destination: GameView(screentSize: screentSize)) {
                             Text("Start Game!")
                                 .font(.title2.bold())
                                 .foregroundColor(.white)
                                 .padding(20)
                                 .background(
-                                    intros[getIndex()].color,
+                                    steps[getIndex()].color,
                                     in: RoundedRectangle(cornerRadius: 30)
                                 )
                         }
                     } else {
                         Button  {
-                            let index = min(getIndex() + 1, intros.count - 1)
+                            let index = min(getIndex() + 1, steps.count - 1)
                             offset = CGFloat(index) * screentSize.width
                         } label: {
                             Image(systemName: "chevron.right")
                                 .font(.title2.bold())
                                 .foregroundColor(.white)
                                 .padding(20)
-                                .background(intros[getIndex()].color, in: Circle())
+                                .background(steps[getIndex()].color, in: Circle())
                         }
                     }
                     
@@ -116,8 +116,8 @@ struct HomeView: View {
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .animation(.easeOut,value: getIndex())
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+//            .navigationBarHidden(true)
+//            .navigationBarBackButtonHidden(true)
         }
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
@@ -132,7 +132,7 @@ struct HomeView: View {
     
     func getIndex() -> Int {
         let progress = round(offset / screentSize.width)
-        let index = min(Int(progress), intros.count - 1)
+        let index = min(Int(progress), steps.count - 1)
         return index
     }
 }

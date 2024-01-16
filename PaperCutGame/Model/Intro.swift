@@ -10,20 +10,16 @@ import SwiftUI
 struct Intro: Identifiable {
     var id = UUID().uuidString
     var image: String
-    var title: String
     var description: String
-    var color: Color
+    var ref: String
 }
 
 var intros : [Intro] = [
-    Intro(image: "step1", title: "Step 1", description: "Fold a square piece of paper along the diagonal.",color: Color("Blue")),
-    Intro(image: "step2", title: "Step 2", description: "Fold it again.",color: Color("Yellow")),
-    Intro(image: "step3", title: "Step 3", description: "Fold it into thirds.",color: Color("Pink")),
-    Intro(image: "step4", title: "Step 4", description: "Fold it at another corner.",color: Color("Green")),
-    Intro(image: "step5", title: "Step 5", description: "Draw the desired pattern on the paper.",color: Color("Blue")),
-    Intro(image: "step6", title: "Step 6", description: "Cut along the traced lines with scissors.",color: Color("Yellow")),
-    Intro(image: "step7", title: "Step 7", description: "Unfold the paper, revealing a symmetrical design.",color: Color("Pink")),
-    Intro(image: "startgame", title: "Unveiling Symmetry", description: "Let's unravel the mystery and make predictions about the symmetrical design that will unfold from our folded creations. Can you discover the correct pattern? \nGive it a try!",color: Color("Green"))
+    Intro(image: "xi", description: "Delving into symbolic designs, we find creations like the 'Double 喜' paper cutting, symbolizing unity in marriage.", ref: ""),
+    Intro(image: "flower", description: "A paper cutting design adorned with the symbolic peony, believed to bring prosperity and good fortune.", ref: ""),
+    Intro(image: "fu", description: "An intricate paper cutting design showcasing the auspicious character 福, symbolizing blessings and happiness.", ref: ""),
+    Intro(image: "dragon", description: "Dragon paper cutting symbolizes auspiciousness, power, and good fortune, often depicted in traditional folk art to celebrate important occasions and bring blessings.", ref: "by Mr. Shen Peinong"),
+    Intro(image: "fish", description: "A beautifully crafted fish paper cutting design, a symbol of abundance and prosperity.", ref: "")
 ]
 
 

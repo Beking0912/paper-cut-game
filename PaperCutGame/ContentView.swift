@@ -14,13 +14,15 @@ struct ContentView: View {
         
 //                    GeometryReader { proxy in
 //                        let size = proxy.size
-//                        GameView(screentSize: size)
+//                        IntroView(screentSize: size)
 //                    }
+        
+        
 
         if endAnimation {
             GeometryReader { proxy in
                 let size = proxy.size
-                HomeView(screentSize: size)
+                IntroView(screentSize: size)
             }
         } else {
             SplashScreen(endAnimation: $endAnimation)
