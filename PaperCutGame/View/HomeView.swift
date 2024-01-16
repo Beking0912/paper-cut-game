@@ -33,7 +33,7 @@ struct HomeView: View {
                 .padding()
                 
                 Spacer()
-                
+                                
                 // content
                 OffsetPageTabView(offset: $offset) {
                     HStack(spacing: 0) {

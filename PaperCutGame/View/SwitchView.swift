@@ -21,12 +21,10 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
         NavigationView {
             VStack {
                 
-                // head
                 headContent()
                 
                 Spacer()
                 
-                // content
                 OffsetPageTabView(offset: $offset) {
                     HStack(spacing: 0) {
                         mainContent()
@@ -35,7 +33,6 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
                 
                 Spacer()
                 
-                // foot
                 footContent()
             }
             .background(Color("Background"))

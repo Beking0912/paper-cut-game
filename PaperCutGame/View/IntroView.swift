@@ -34,9 +34,17 @@ struct IntroView: View {
                         .padding(.bottom, 50)
                     
                     
+                    
+                    Text("Symbolic Paper Cutting Designs")
+                        .font(.title2.bold())
+                    
+                    
+                    Text("Swipe left to switch content.")
+                        .font(.subheadline)
+                    
+                    
                     SwitchView(screentSize: screentSize) {
-                        Text("Symbolic Paper Cutting Designs")
-                            .font(.title2.bold())
+                        EmptyView()
                     } mainContent: {
                                 
                         ForEach(intros) { intro in
@@ -48,7 +56,7 @@ struct IntroView: View {
                                         
                                 Text(intro.ref)
                                     .font(.subheadline)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 10)
                                         
                                 Text(intro.description)
                                     .font(.title3.bold())
@@ -58,7 +66,45 @@ struct IntroView: View {
                         }
                         
                     } footContent: {
-                        Text("Swipe left to switch content.")
+                        EmptyView()
+                    }
+                    .padding(10)
+                    .background(Color.gray.opacity(0.2))
+                    .frame(width: screentSize.width, height: screentSize.height / 1.5)
+                    
+                    
+                    Text("The Versatility of Folk Paper Cutting")
+                        .font(.title2.bold())
+                        .padding(.top, 70)
+                    
+                    
+                    Text("Swipe left to switch content.")
+                        .font(.subheadline)
+                    
+                    SwitchView(screentSize: screentSize) {
+                        EmptyView()
+                    } mainContent: {
+                                
+                        ForEach(intros2) { intro in
+                            VStack {
+                                Image(intro.image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: screentSize.width - 40)
+                                        
+                                Text(intro.ref)
+                                    .font(.subheadline)
+                                    .padding(.bottom, 10)
+                                        
+                                Text(intro.description)
+                                    .font(.title3.bold())
+                            }
+                                .padding(10)
+                                .frame(width: screentSize.width - 20)
+                        }
+                        
+                    } footContent: {
+                        EmptyView()
                     }
                     .padding(10)
                     .background(Color.gray.opacity(0.2))
