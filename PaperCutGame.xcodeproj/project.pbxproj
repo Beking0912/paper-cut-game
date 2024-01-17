@@ -20,6 +20,7 @@
 		713CD3812B51BDB800C6F2EA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CD3802B51BDB800C6F2EA /* HomeView.swift */; };
 		713CD3832B51BEF700C6F2EA /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CD3822B51BEF700C6F2EA /* OffsetPageTabView.swift */; };
 		713CD3862B51BF3F00C6F2EA /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CD3852B51BF3F00C6F2EA /* Intro.swift */; };
+		716B5FB02B58609D0068334F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716B5FAF2B58609D0068334F /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		713CD3802B51BDB800C6F2EA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		713CD3822B51BEF700C6F2EA /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		713CD3852B51BF3F00C6F2EA /* Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
+		716B5FAF2B58609D0068334F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				713728D92B5497D00069A12F /* GameView.swift */,
 				713B422B2B559C2700DA126D /* IntroView.swift */,
 				713B42312B56344000DA126D /* SwitchView.swift */,
+				716B5FAF2B58609D0068334F /* AboutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				713CD3862B51BF3F00C6F2EA /* Intro.swift in Sources */,
 				713CD3832B51BEF700C6F2EA /* OffsetPageTabView.swift in Sources */,
 				713CD3812B51BDB800C6F2EA /* HomeView.swift in Sources */,
+				716B5FB02B58609D0068334F /* AboutView.swift in Sources */,
 				713CD3732B51A7F200C6F2EA /* ContentView.swift in Sources */,
 				713B422C2B559C2700DA126D /* IntroView.swift in Sources */,
 				713CD3712B51A7F200C6F2EA /* PaperCutGameApp.swift in Sources */,

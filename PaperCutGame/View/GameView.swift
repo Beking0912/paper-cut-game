@@ -24,6 +24,7 @@ struct GameView: View {
                         .font(.title.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 20)
+                        .padding(.top, 20)
                             
                     HStack {
                         Text("Difficulty:")
@@ -80,6 +81,8 @@ struct GameView: View {
                                 self.roundNumber = min(self.roundNumber + 1, GameInfos.count - 1)
                                 self.selectedAnswer = nil
                                 self.showNextButton = false
+                            } else {
+                                // jump to AboutView
                             }
                         }
                     } label: {

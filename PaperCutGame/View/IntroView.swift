@@ -32,6 +32,7 @@ struct IntroView: View {
                         .foregroundColor(.primary)
                         .padding()
                         .padding(.bottom, 50)
+                        .fixedSize(horizontal: false, vertical: true)
                     
                     
                     
@@ -60,6 +61,7 @@ struct IntroView: View {
                                         
                                 Text(intro.description)
                                     .font(.title3.bold())
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
                                 .padding(10)
                                 .frame(width: screentSize.width - 20)
@@ -111,11 +113,16 @@ struct IntroView: View {
                     .frame(width: screentSize.width, height: screentSize.height / 1.5)
                     
                     
-                    Text("Excited to dive in? Join me on an exploration of the fascinating world of paper folding as we unravel the secrets to creating perfectly symmetrical paper cutting designs! Click the Start Button and Let the Adventure Begin!")
+                    Text("Excited to dive in? Join me on an exploration of the fascinating world of paper folding as we unravel the secrets to creating perfectly symmetrical paper cutting designs! Click the Start Button and let's together craft a beautiful snowflake papercut masterpiece!")
                         .font(.title3.bold())
                         .foregroundColor(.primary)
-                        .padding()
+                        .padding(.horizontal, 20)
                         .padding(.top, 50)
+                    
+                    Image("snowflake")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: screentSize.width / 3)
                     
                     
                     Spacer()
