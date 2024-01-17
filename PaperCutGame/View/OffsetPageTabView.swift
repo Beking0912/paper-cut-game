@@ -42,6 +42,7 @@ struct OffsetPageTabView<Content: View>: UIViewRepresentable  {
         return scrollview
         
     }
+    
     func updateUIView (_ uiView: UIScrollView, context: Context) {
         let currentOffset = uiView.contentOffset.x
         if currentOffset != offset {

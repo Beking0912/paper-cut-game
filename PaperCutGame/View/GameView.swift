@@ -81,25 +81,33 @@ struct GameView: View {
                                 self.roundNumber = min(self.roundNumber + 1, GameInfos.count - 1)
                                 self.selectedAnswer = nil
                                 self.showNextButton = false
-                            } else {
-                                // jump to AboutView
                             }
                         }
                     } label: {
-                        Text(!showNextButton ? " "
-                             : self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                             ? self.roundNumber == (GameInfos.count - 1)
-                             ? "👍 Amazing! Completed all levels!"
-                             : "🎉 Congratulations! Next round!"
-                             : "😊 Sorry, maybe try another one."
-                        )
-                        .font(.title2.bold())
-                        .foregroundColor(
-                            self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                            ? .green
-                            : .red
-                        )
-                        .padding(20)
+                        if showNextButton
+                        && self.selectedAnswer == GameInfos[roundNumber].correctAnswer
+                        && self.roundNumber == (GameInfos.count - 1)
+                        {
+                            NavigationLink(destination: AboutView()) {
+                                Text("👍 Amazing! Completed all levels!")
+                                    .font(.title2.bold())
+                                    .foregroundColor(.green)
+                                    .padding(20)
+                            }
+                        } else {
+                            Text(!showNextButton ? " "
+                                 : self.selectedAnswer == GameInfos[roundNumber].correctAnswer
+                                 ? "🎉 Congratulations! Next round!"
+                                 : "😊 Sorry, maybe try another one."
+                            )
+                            .font(.title2.bold())
+                            .foregroundColor(
+                                self.selectedAnswer == GameInfos[roundNumber].correctAnswer
+                                ? .green
+                                : .red
+                            )
+                            .padding(20)
+                        }
                     }
                 }
         }

@@ -61,6 +61,7 @@ struct AboutView: View {
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .navigationBarHidden(true)
     }
 }
 
