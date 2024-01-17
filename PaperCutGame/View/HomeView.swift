@@ -116,11 +116,8 @@ struct HomeView: View {
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .animation(.easeOut,value: getIndex())
-//            .navigationBarHidden(true)
-//            .navigationBarBackButtonHidden(true)
-        }
-//        .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
+
+        }.navigationBarHidden(true)
     }
     
     

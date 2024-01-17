@@ -77,7 +77,7 @@ struct GameView: View {
                             correctAnswer: GameInfos[roundNumber].correctAnswer
                         ) {
                             if self.roundNumber != (GameInfos.count - 1) {
-                                self.roundNumber = min(GameInfos[roundNumber].round + 1, GameInfos.count - 1)
+                                self.roundNumber = min(self.roundNumber + 1, GameInfos.count - 1)
                                 self.selectedAnswer = nil
                                 self.showNextButton = false
                             }
@@ -102,6 +102,7 @@ struct GameView: View {
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .navigationBarHidden(true)
     }
     
     func goNextRound(showNextButton: Bool, selectedAnswer: Int?, correctAnswer: Int) -> Bool {

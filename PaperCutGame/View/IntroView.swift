@@ -140,7 +140,8 @@ struct IntroView: View {
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .ignoresSafeArea()
-        }
+            
+        }.navigationBarHidden(true)
     }
 }
 
