@@ -18,7 +18,6 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
     @State var offset : CGFloat = 0
     
     var body: some View {
-        NavigationView {
             VStack {
                 
                 headContent()
@@ -37,9 +36,7 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
             }
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .animation(.easeOut,value: getIndex())
-
-        }.navigationBarHidden(true)
+            .animation(.easeOut, value: getIndex())
     }
     
     

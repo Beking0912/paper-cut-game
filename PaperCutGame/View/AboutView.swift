@@ -8,43 +8,62 @@
 import SwiftUI
 
 struct AboutView: View {
+    
+    @Binding var inGame: Bool
+    @Binding var score:Int
+    
     var body: some View {
         HStack(spacing: 0) {
-            
+                        
             VStack {
                 
                 Image("congrats")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                 
-                Text("About the Game")
+                
+                Text("🎉🎉🎉").font(.title3)
+                Text("You've won \(score) points!")
                     .font(.title.bold())
+                    .foregroundColor(Color("Red"))
                     .padding(.horizontal, 20)
                     .padding(.bottom, 20)
                 
-                Text("🎉🎉🎉").font(.title3)
+//                Text("🎉🎉🎉").font(.title3)
                 
-                Text("Congratulations, completed all levels!")
-                    .font(.title3.bold())
-                    .foregroundColor(Color("Red"))
+//                Text("Congratulations, completed all levels!")
+//                    .font(.title3.bold())
+//                    .foregroundColor(Color("Red"))
                 
                 
-                Text("If you have paper, a pen, and a scissor, why not give it a try? Let this game inspire you to boldly embark on your own paper cutting creations! \n\nReaching the end of the Chinese Paper Cutting Game, I'm honored to share the beauty of this art with you. Looking forward to your ongoing interest in this cultural heritage.")
+                Text("If you have paper, a pen, and a scissor, why not give it a try?\n\nLooking forward to your ongoing interest in Chinese paper cutting.")
                     .font(.title3)
                     .padding()
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Image("end")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                Button("Play Again") {
+                    inGame = true
+                    score = 0
+                }
+                .font(.title3.bold())
+                .foregroundColor(.white)
+                .padding(15)
+                .background(
+                    .green,
+                    in: RoundedRectangle(cornerRadius: 15)
+                )
                 
-                Text("Thank you :)")
-                    .font(.title2.bold())
-                    .foregroundColor(Color("Red"))
+//                Image("end")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                
+//                Text("Thank you :)")
+//                    .font(.title2.bold())
+//                    .foregroundColor(Color("Red"))
                 
                 Spacer()
                 
-                VStack{
+                VStack {
                     Text("Powered by")
                         .font(.callout)
                         .fontWeight(.semibold)
@@ -61,10 +80,12 @@ struct AboutView: View {
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .navigationBarHidden(true)
     }
 }
 
-#Preview {
-    AboutView()
+
+struct About_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

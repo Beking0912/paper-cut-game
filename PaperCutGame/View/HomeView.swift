@@ -10,10 +10,13 @@ import SwiftUI
 struct HomeView: View {
     
     var screentSize : CGSize
+    
+    @Binding var inStep: Bool
+    @Binding var inGame: Bool
+    
     @State var offset : CGFloat = 0
     
     var body: some View {
-        NavigationView {
             VStack {
                 
                 // head
@@ -87,7 +90,10 @@ struct HomeView: View {
                     
                     // right button
                     if getIndex() == steps.count - 1 {
-                        NavigationLink(destination: GameView(screentSize: screentSize)) {
+                        Button  {
+                            inStep = false
+                            inGame = true
+                        } label: {
                             Text("Start Game!")
                                 .font(.title2.bold())
                                 .foregroundColor(.white)
@@ -109,15 +115,12 @@ struct HomeView: View {
                                 .background(steps[getIndex()].color, in: Circle())
                         }
                     }
-                    
                 }
                 .padding(.horizontal, 20)
             }
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .animation(.easeOut,value: getIndex())
-
-        }.navigationBarHidden(true)
+            .animation(.easeOut, value: getIndex())
     }
     
     

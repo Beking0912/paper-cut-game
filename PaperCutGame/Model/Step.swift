@@ -23,6 +23,6 @@ var steps : [Step] = [
     Step(image: "step5", title: "Step 5", description: "Draw the desired pattern on the paper.",color: Color("Blue")),
     Step(image: "step6", title: "Step 6", description: "Cut along the traced lines with scissors.",color: Color("Yellow")),
     Step(image: "step7", title: "Step 7", description: "Unfold the paper, revealing a symmetrical design.",color: Color("Pink")),
-    Step(image: "startgame", title: "Unveiling Symmetry", description: "Let's unravel the mystery and make predictions about the symmetrical design that will unfold from our folded creations. Can you discover the correct pattern? \nGive it a try!",color: Color("Green"))
+    Step(image: "startgame", title: "Unveiling Symmetry", description: "Can you predict the symmetrical design unfolding from our folded creations?",color: Color("Green"))
 ]
 

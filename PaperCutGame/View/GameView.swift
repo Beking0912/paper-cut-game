@@ -11,11 +11,15 @@ struct GameView: View {
     
     var screentSize : CGSize
     
+    @Binding var inGame: Bool
+    @Binding var score:Int
+    
     @State var roundNumber : Int = 0
    
     @State private var selectedAnswer: Int? = nil
     @State private var showNextButton: Bool = false
-                
+    @State private var isPopupPresented = false
+        
     var body: some View {
         
         HStack(spacing: 0) {
@@ -51,8 +55,8 @@ struct GameView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: screentSize.height / 3)
                             
-                    Text("Guess what the paper cutout unfolds into?")
-                        .font(.system(.headline, design: .rounded))
+                    Text("Guess what the paper unfolds into?\nClick your answer below.")
+                        .font(.title3.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(20)
                             
@@ -61,6 +65,7 @@ struct GameView: View {
                             Button(action: {
                                 self.selectedAnswer = index
                                 self.showNextButton = true
+                                isPopupPresented.toggle()
                             }) {
                                 Image(GameInfos[roundNumber].optionImages[index])
                                     .resizable()
@@ -70,59 +75,116 @@ struct GameView: View {
                             }
                         }
                     }.padding(.vertical, 5)
+                                
+                    Spacer()
                     
-                    Button {
-                        if goNextRound(
-                            showNextButton: showNextButton,
-                            selectedAnswer: self.selectedAnswer,
-                            correctAnswer: GameInfos[roundNumber].correctAnswer
-                        ) {
-                            if self.roundNumber != (GameInfos.count - 1) {
-                                self.roundNumber = min(self.roundNumber + 1, GameInfos.count - 1)
-                                self.selectedAnswer = nil
-                                self.showNextButton = false
-                            }
-                        }
-                    } label: {
-                        if showNextButton
-                        && self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                        && self.roundNumber == (GameInfos.count - 1)
-                        {
-                            NavigationLink(destination: AboutView()) {
-                                Text("👍 Amazing! Completed all levels!")
-                                    .font(.title2.bold())
-                                    .foregroundColor(.green)
-                                    .padding(20)
-                            }
-                        } else {
-                            Text(!showNextButton ? " "
-                                 : self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                                 ? "🎉 Congratulations! Next round!"
-                                 : "😊 Sorry, maybe try another one."
+                }.overlay(
+                    isPopupPresented ?
+                        Color.black.opacity(0.4)
+                            .edgesIgnoringSafeArea(.all)
+                            .overlay(
+                                PopupView(
+                                    screentSize: screentSize,
+                                    points: self.selectedAnswer == GameInfos[roundNumber].correctAnswer
+                                        ? "+\(GameInfos[roundNumber].score) pts 🎉"
+                                        : "+0 pts 😔",
+                                    message: self.selectedAnswer == GameInfos[roundNumber].correctAnswer
+                                        ? "Awesome! Correct answer!"
+                                        : "Oops! Not quite there.",
+                                    onNext: {
+                                        isPopupPresented.toggle()
+                                        
+                                        if self.selectedAnswer == GameInfos[roundNumber].correctAnswer {
+                                            score += GameInfos[roundNumber].score
+                                        }
+                                        
+                                        if self.roundNumber != (GameInfos.count - 1) {
+                                            self.roundNumber = min(self.roundNumber + 1, GameInfos.count - 1)
+                                            self.selectedAnswer = nil
+                                            self.showNextButton = false
+                                        } else {
+                                            inGame = false
+                                        }
+                                    },
+                                    onClose: {
+                                        isPopupPresented.toggle()
+                                    }
+                                )
+                                    .alignmentGuide(HorizontalAlignment.center) { d in
+                                        d[HorizontalAlignment.center]
+                                    }
+                                    .alignmentGuide(VerticalAlignment.center) { d in
+                                        d[VerticalAlignment.center]
+                                    }
                             )
-                            .font(.title2.bold())
-                            .foregroundColor(
-                                self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                                ? .green
-                                : .red
-                            )
-                            .padding(20)
-                        }
-                    }
-                }
+                        : nil
+                )
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .navigationBarHidden(true)
-    }
-    
-    func goNextRound(showNextButton: Bool, selectedAnswer: Int?, correctAnswer: Int) -> Bool {
-        if showNextButton && selectedAnswer == correctAnswer {
-            return true
-        }
-        return false
     }
 }
+
+
+struct PopupView: View {
+    var screentSize : CGSize
+    var points: String
+    var message: String
+        
+    var onNext: () -> Void
+    var onClose: () -> Void
+    
+
+    var body: some View {
+        VStack {
+            Text(points)
+                .font(.largeTitle.bold())
+                .foregroundColor(.green)
+                .padding(.bottom, 5)
+                        
+            Text(message)
+                .font(.title2)
+                .fontWeight(.semibold)
+
+            
+            Spacer()
+            
+            
+            HStack(alignment:.bottom, spacing: 20) {
+                Button("Try Again") {
+                    onClose()
+                }
+                .font(.title3.bold())
+                .foregroundColor(.white)
+                .padding(15)
+                .background(
+                    .gray,
+                    in: RoundedRectangle(cornerRadius: 15)
+                )
+                
+                
+
+                Button("Next Round") {
+                    onNext()
+                }
+                .font(.title3.bold())
+                .foregroundColor(.white)
+                .padding(15)
+                .background(
+                    .green,
+                    in: RoundedRectangle(cornerRadius: 15)
+                )
+            }
+        }
+        .padding()
+        .frame(width: screentSize.width - 80, height: screentSize.height / 4)
+        .background(Color("Background"))
+        .cornerRadius(15)
+        .shadow(radius: 5)
+    }
+}
+
+
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {

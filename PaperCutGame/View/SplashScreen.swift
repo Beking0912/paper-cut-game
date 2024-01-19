@@ -9,20 +9,21 @@ import SwiftUI
 
 struct SplashScreen: View {
     
+    @Binding var endAnimation : Bool
+    @Binding var inIntro: Bool
+    
     @State var startAnimation : Bool = false
     @State var circleAnimation1 : Bool = false
     @State var circleAnimation2 : Bool = false
     
-    @Binding var endAnimation : Bool
-
     var body: some View {
         ZStack {
-            Color("Blue")
+            Color("bg")
             
             Group {
                 SplashShape()
                     .trim(from: 0, to: startAnimation ? 1 : 0)
-                    .stroke(Color.white,style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .stroke(.white, style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                 
                 
                 Text("✏️")
@@ -88,6 +89,10 @@ struct SplashScreen: View {
             
             withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05).delay(1.2)) {
                 endAnimation.toggle()
+                
+                if endAnimation == true {
+                    inIntro = true
+                }
             }
         }
     }
