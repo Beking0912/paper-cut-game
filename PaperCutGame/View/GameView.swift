@@ -25,7 +25,7 @@ struct GameView: View {
         HStack(spacing: 0) {
                 VStack {
                     Text("ROUND \(GameInfos[roundNumber].round)")
-                        .font(.title.bold())
+                        .font(.largeTitle.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 20)
                         .padding(.top, 20)
@@ -36,7 +36,7 @@ struct GameView: View {
                         
                         Text(GameInfos[roundNumber].difficulty)
                             .font(.system(.subheadline, design: .rounded))
-                            .foregroundColor(Color("Red"))
+                            .foregroundColor(Color("DarkRed"))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
@@ -56,7 +56,7 @@ struct GameView: View {
                         .frame(height: screentSize.height / 3)
                             
                     Text("Guess what the paper unfolds into?\nClick your answer below.")
-                        .font(.title3.bold())
+                        .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(20)
                             
@@ -85,6 +85,7 @@ struct GameView: View {
                             .overlay(
                                 PopupView(
                                     screentSize: screentSize,
+                                    finished: self.roundNumber == (GameInfos.count - 1),
                                     points: self.selectedAnswer == GameInfos[roundNumber].correctAnswer
                                         ? "+\(GameInfos[roundNumber].score) pts 🎉"
                                         : "+0 pts 😔",
@@ -128,6 +129,7 @@ struct GameView: View {
 
 struct PopupView: View {
     var screentSize : CGSize
+    var finished: Bool
     var points: String
     var message: String
         
@@ -139,12 +141,12 @@ struct PopupView: View {
         VStack {
             Text(points)
                 .font(.largeTitle.bold())
-                .foregroundColor(.green)
+                .foregroundColor(Color("Green"))
                 .padding(.bottom, 5)
                         
             Text(message)
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.title3)
+//                .fontWeight(.semibold)
 
             
             Spacer()
@@ -158,22 +160,30 @@ struct PopupView: View {
                 .foregroundColor(.white)
                 .padding(15)
                 .background(
-                    .gray,
+                    Color("Blue"),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color("Blue"), lineWidth: 2)
+//                )
                 
                 
 
-                Button("Next Round") {
+                Button(finished ? "See Result" : "Next Round") {
                     onNext()
                 }
                 .font(.title3.bold())
                 .foregroundColor(.white)
                 .padding(15)
                 .background(
-                    .green,
+                    Color("Green"),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color("Green"), lineWidth: 2)
+//                )
             }
         }
         .padding()

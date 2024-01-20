@@ -20,15 +20,21 @@ struct ContentView: View {
         GeometryReader { proxy in
             let size = proxy.size
             
+//            IntroView(screentSize: size, inIntro: $inIntro, inStep: $inStep, inGame: $inGame)
+//            AboutView(screentSize: size, inGame: $inGame, score: $score)
+//            GameView(screentSize: size, inGame: $inGame, score: $score)
+//            HomeView(screentSize: size, inStep: $inStep, inGame: $inGame)
+//            SplashScreen(endAnimation: $endAnimation, inIntro: $inIntro)
+            
             if endAnimation {
                 if inIntro {
-                    IntroView(screentSize: size, inIntro: $inIntro, inStep: $inStep)
+                    IntroView(screentSize: size, inIntro: $inIntro, inStep: $inStep, inGame: $inGame)
                 } else if inStep {
                     HomeView(screentSize: size, inStep: $inStep, inGame: $inGame)
                 } else if inGame {
                     GameView(screentSize: size, inGame: $inGame, score: $score)
                 } else {
-                    AboutView(inGame: $inGame, score: $score)
+                    AboutView(screentSize: size, inGame: $inGame, score: $score)
                 }
             } else {
                 SplashScreen(endAnimation: $endAnimation, inIntro: $inIntro)

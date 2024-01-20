@@ -18,7 +18,7 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            Color("bg")
+            Color("Blue")
             
             Group {
                 SplashShape()

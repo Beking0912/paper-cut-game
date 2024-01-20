@@ -13,9 +13,9 @@ struct IntroView: View {
     
     @Binding var inIntro: Bool
     @Binding var inStep: Bool
+    @Binding var inGame: Bool
 
     var body: some View {
-            ScrollView {
                 VStack {
                     
                     Image("header")
@@ -24,18 +24,26 @@ struct IntroView: View {
                         .frame(width: screentSize.width)
                         .ignoresSafeArea()
                     
+                    Image("title")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
                     
-                    Text("Chinese Paper Cutting")
-                        .font(.largeTitle.bold())
-                        .padding(.top, 20)
+
+                    Text("Learn Chinese paper cutting basics in a quick tutorial, then dive into the world of symmetrical art challenges.")
+                        .foregroundColor(.primary)
+                        .padding(.horizontal, 20)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.bottom, 40)
+
                     
                                         
-                    Text("With its roots in ancient China, stands as an enchanting art of intricate designs. \nOriginating in rural communities, it not only symbolizes marital bliss, prosperity, and harmony but also serves as a storytelling medium, reflecting historical events and values.")
-                        .font(.title3)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .padding(.bottom, 50)
-                        .fixedSize(horizontal: false, vertical: true)
+//                    Text("With its roots in ancient China, stands as an enchanting art of intricate designs. \nOriginating in rural communities, it not only symbolizes marital bliss, prosperity, and harmony but also serves as a storytelling medium, reflecting historical events and values.")
+//                        .font(.title3)
+//                        .foregroundColor(.primary)
+//                        .padding()
+//                        .padding(.bottom, 50)
+//                        .fixedSize(horizontal: false, vertical: true)
                     
                     
                     
@@ -114,43 +122,63 @@ struct IntroView: View {
 //                    .padding(10)
 //                    .background(Color.gray.opacity(0.2))
 //                    .frame(width: screentSize.width, height: screentSize.height / 1.5)
-//                    
-//                    
-//                    Text("Excited to dive in? Join me on an exploration of the fascinating world of paper folding as we unravel the secrets to creating perfectly symmetrical paper cutting designs! Click the Start Button and let's together craft a beautiful snowflake papercut masterpiece!")
-//                        .font(.title3.bold())
-//                        .foregroundColor(.primary)
-//                        .padding(.horizontal, 20)
-//                        .padding(.top, 50)
-//                    
-//                    Image("snowflake")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: screentSize.width / 3)
-//                    
-//                    
-//                    Spacer()
+
                     
-                    Button  {
+           
+                    Spacer()
+                    
+                                     
+                    Button("Start Tutorial") {
                         inIntro = false
                         inStep = true
-                    } label: {
-                        Text("Get Started")
-                            .font(.title.bold())
-                            .foregroundColor(Color("Red"))
-                            .padding()
-                            .border(Color("Red"), width: 4)
-                    }.padding()
-
-       
-                    Image("footer")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: screentSize.width)
-                        .ignoresSafeArea()
+                    }
+                    .frame(width: screentSize.width - 80)
+                    .font(.title3.bold())
+                    .foregroundColor(.white)
+                    .padding(15)
+                    .background(
+                        Color("Yellow"),
+                        in: RoundedRectangle(cornerRadius: 15)
+                    )
+                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                    
+                    
+                    Button("Start Game") {
+                        inIntro = false
+                        inGame = true
+                    }
+                    .frame(width: screentSize.width - 80)
+                    .font(.title3.bold())
+                    .foregroundColor(.white)
+                    .padding(15)
+                    .background(
+                        Color("Green"),
+                        in: RoundedRectangle(cornerRadius: 15)
+                    )
+                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                    .padding()
+                    
+                    
+                    Button("Explore More") {
+                        inIntro = false
+                        inGame = true
+                    }
+                    .frame(width: screentSize.width - 80)
+                    .font(.title3.bold())
+                    .foregroundColor(Color("Blue"))
+                    .padding(15)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("Blue"), lineWidth: 2)
+                    )
+                    .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                    
+                    
+                    Spacer()
                 }
-            }
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            
             .ignoresSafeArea()
     }
 }

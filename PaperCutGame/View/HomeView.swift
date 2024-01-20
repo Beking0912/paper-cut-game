@@ -52,7 +52,8 @@ struct HomeView: View {
                                         .font(.largeTitle.bold())
                                     
                                     Text(step.description)
-                                        .font(.title3.bold())
+                                        .font(.title3)
+//                                        .fontWeight(.semibold)
                                         .foregroundColor(.primary)
                                 }
                                 .padding(.top, 60)

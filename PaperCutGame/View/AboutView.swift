@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AboutView: View {
+    var screentSize : CGSize
     
     @Binding var inGame: Bool
     @Binding var score:Int
@@ -16,54 +17,64 @@ struct AboutView: View {
         HStack(spacing: 0) {
                         
             VStack {
-                
-                Image("congrats")
+                Image("score")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: screentSize.width)
+                    .padding(.top, 20)
+        
                 
-                
-                Text("🎉🎉🎉").font(.title3)
-                Text("You've won \(score) points!")
-                    .font(.title.bold())
-                    .foregroundColor(Color("Red"))
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 20)
-                
-//                Text("🎉🎉🎉").font(.title3)
-                
-//                Text("Congratulations, completed all levels!")
-//                    .font(.title3.bold())
-//                    .foregroundColor(Color("Red"))
-                
-                
-                Text("If you have paper, a pen, and a scissor, why not give it a try?\n\nLooking forward to your ongoing interest in Chinese paper cutting.")
-                    .font(.title3)
-                    .padding()
-                    .fixedSize(horizontal: false, vertical: true)
+                Text("\(score) pts")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(.primary)
+                    .offset(y: -100)
+
+
                 
                 Button("Play Again") {
                     inGame = true
                     score = 0
                 }
+                .frame(width: screentSize.width - 80)
                 .font(.title3.bold())
                 .foregroundColor(.white)
                 .padding(15)
                 .background(
-                    .green,
+                    Color("Green"),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color("Blue"), lineWidth: 2)
+//                )
+                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
                 
-//                Image("end")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                
-//                Text("Thank you :)")
-//                    .font(.title2.bold())
-//                    .foregroundColor(Color("Red"))
+
                 
-                Spacer()
+                Button("Explore More") {
+//                    inIntro = false
+//                    inGame = true
+                    // score = 0
+                }
+                .frame(width: screentSize.width - 80)
+                .font(.title3.bold())
+                .foregroundColor(Color("Blue"))
+                .padding(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("Blue"), lineWidth: 2)
+                )
+                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                .padding()
                 
+                
+
                 VStack {
+                    Text("If you have paper, a pen, and a scissor, why not give it a try? Looking forward to your ongoing interest in Chinese paper cutting.")
+                        .font(.callout)
+                        .padding(20)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
                     Text("Powered by")
                         .font(.callout)
                         .fontWeight(.semibold)
@@ -74,9 +85,8 @@ struct AboutView: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 .foregroundColor(.black)
-                
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
