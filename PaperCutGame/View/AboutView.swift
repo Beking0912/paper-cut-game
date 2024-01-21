@@ -11,6 +11,7 @@ struct AboutView: View {
     var screentSize : CGSize
     
     @Binding var inGame: Bool
+    @Binding var inExplore: Bool
     @Binding var score:Int
     
     var body: some View {
@@ -52,9 +53,8 @@ struct AboutView: View {
 
                 
                 Button("Explore More") {
-//                    inIntro = false
-//                    inGame = true
-                    // score = 0
+                    inExplore = true
+                    score = 0
                 }
                 .frame(width: screentSize.width - 80)
                 .font(.title3.bold())

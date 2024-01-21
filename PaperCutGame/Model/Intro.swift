@@ -15,9 +15,9 @@ struct Intro: Identifiable {
 }
 
 var intros : [Intro] = [
-    Intro(image: "dragon", description: "Dragon paper cutting symbolizes auspiciousness, power, and good fortune.", ref: "by Mr. Shen Peinong"),
+    Intro(image: "dragon", description: "Delving into symbolic designs, we find Dragon paper cutting symbolizes auspiciousness, power, and good fortune.", ref: "by Mr. Shen Peinong"),
     Intro(image: "flower", description: "A paper cutting design adorned with the symbolic peony, believed to bring prosperity and good fortune.", ref: "by xiaohongshu user 9420028752"),
-    Intro(image: "xi", description: "Delving into symbolic designs, we find creations like the 'Double 喜' paper cutting, symbolizing unity in marriage.", ref: "by xiaohongshu user 874478794"),
+    Intro(image: "xi", description: "Creations like the 'Double 喜' paper cutting, symbolizing unity in marriage.", ref: "by xiaohongshu user 874478794"),
     Intro(image: "fu", description: "An intricate paper cutting design showcasing the auspicious character 福, symbolizing blessings and happiness.", ref: "by xiaohongshu user 974474756"),
     Intro(image: "fish", description: "A beautifully crafted fish paper cutting design, a symbol of abundance and prosperity.", ref: "by xiaohongshu user 553376519")
 ]
