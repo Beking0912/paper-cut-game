@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashScreen: View {
     
     @Binding var endAnimation : Bool
-    @Binding var inIntro: Bool
+    @Binding var currentMode: GameMode
     
     @State var startAnimation : Bool = false
     @State var circleAnimation1 : Bool = false
@@ -91,7 +91,7 @@ struct SplashScreen: View {
                 endAnimation.toggle()
                 
                 if endAnimation == true {
-                    inIntro = true
+                    currentMode = .inIntro
                 }
             }
         }

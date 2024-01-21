@@ -11,8 +11,7 @@ struct ExploreView: View {
     
     var screentSize : CGSize
     
-    @Binding var inIntro: Bool
-    @Binding var inExplore: Bool
+    @Binding var currentMode: GameMode
 
     var body: some View {
         ScrollView {
@@ -21,8 +20,7 @@ struct ExploreView: View {
                 SwitchView(
                     screentSize: screentSize,
                     count: intros.count,
-                    inIntro: $inIntro,
-                    inExplore: $inExplore
+                    currentMode: $currentMode
                 ) {
                     VStack {
                         Text("Symbolic Paper Cutting Designs")

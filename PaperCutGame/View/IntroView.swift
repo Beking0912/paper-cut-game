@@ -11,14 +11,10 @@ struct IntroView: View {
     
     var screentSize : CGSize
     
-    @Binding var inIntro: Bool
-    @Binding var inStep: Bool
-    @Binding var inGame: Bool
-    @Binding var inExplore: Bool
+    @Binding var currentMode: GameMode
 
     var body: some View {
                 VStack {
-                    
                     Image("header")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -42,8 +38,7 @@ struct IntroView: View {
                     
                                      
                     Button("Start Tutorial") {
-                        inIntro = false
-                        inStep = true
+                        currentMode = .inStep
                     }
                     .frame(width: screentSize.width - 80)
                     .font(.title3.bold())
@@ -57,8 +52,7 @@ struct IntroView: View {
                     
                     
                     Button("Start Game") {
-                        inIntro = false
-                        inGame = true
+                        currentMode = .inGame
                     }
                     .frame(width: screentSize.width - 80)
                     .font(.title3.bold())
@@ -73,8 +67,7 @@ struct IntroView: View {
                     
                     
                     Button("Explore More") {
-                        inIntro = false
-                        inExplore = true
+                        currentMode = .inExplore
                     }
                     .frame(width: screentSize.width - 80)
                     .font(.title3.bold())

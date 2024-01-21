@@ -10,8 +10,7 @@ import SwiftUI
 struct AboutView: View {
     var screentSize : CGSize
     
-    @Binding var inGame: Bool
-    @Binding var inExplore: Bool
+    @Binding var currentMode: GameMode
     @Binding var score:Int
     
     var body: some View {
@@ -33,7 +32,7 @@ struct AboutView: View {
 
                 
                 Button("Play Again") {
-                    inGame = true
+                    currentMode = .inGame
                     score = 0
                 }
                 .frame(width: screentSize.width - 80)
@@ -53,7 +52,7 @@ struct AboutView: View {
 
                 
                 Button("Explore More") {
-                    inExplore = true
+                    currentMode = .inExplore
                     score = 0
                 }
                 .frame(width: screentSize.width - 80)

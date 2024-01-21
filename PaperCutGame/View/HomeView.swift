@@ -11,8 +11,7 @@ struct HomeView: View {
     
     var screentSize : CGSize
     
-    @Binding var inStep: Bool
-    @Binding var inGame: Bool
+    @Binding var currentMode: GameMode
     
     @State var offset : CGFloat = 0
     
@@ -92,8 +91,7 @@ struct HomeView: View {
                     // right button
                     if getIndex() == steps.count - 1 {
                         Button  {
-                            inStep = false
-                            inGame = true
+                            currentMode = .inGame
                         } label: {
                             Text("Start Game!")
                                 .font(.title2.bold())

@@ -11,7 +11,7 @@ struct GameView: View {
     
     var screentSize : CGSize
     
-    @Binding var inGame: Bool
+    @Binding var currentMode: GameMode
     @Binding var score:Int
     
     @State var roundNumber : Int = 0
@@ -104,7 +104,7 @@ struct GameView: View {
                                             self.selectedAnswer = nil
                                             self.showNextButton = false
                                         } else {
-                                            inGame = false
+                                            currentMode = .inResult
                                         }
                                     },
                                     onClose: {

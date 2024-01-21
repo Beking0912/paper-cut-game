@@ -12,8 +12,7 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
     var screentSize : CGSize
     var count: Int
     
-    @Binding var inIntro: Bool
-    @Binding var inExplore: Bool
+    @Binding var currentMode: GameMode
     
     let headContent: () -> HeadContent
     let mainContent: () -> MainContent
@@ -53,8 +52,7 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
                         
                         
                         Button {
-                            inExplore = false
-                            inIntro = true
+                            currentMode = .inIntro
                         } label: {
                             Image(systemName: "house.fill").foregroundColor(.white)
                         }
@@ -82,13 +80,7 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
                         .padding()
                     }
                 }
-                
-//                OffsetPageTabView(offset: $offset) {
-//                    HStack(spacing: 0) {
-//                        mainContent()
-//                    }
-//                }
-//                
+               
                 Spacer()
                 
                 footContent()
