@@ -24,12 +24,28 @@ struct GameView: View {
         
         HStack(spacing: 0) {
                 VStack {
-                    Text("ROUND \(GameInfos[roundNumber].round)")
-                        .font(.largeTitle.bold())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 20)
-                        .padding(.top, 20)
-                            
+                    HStack {
+                        Text("ROUND \(GameInfos[roundNumber].round)")
+                            .font(.largeTitle.bold())
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Spacer()
+                        
+                        Button {
+                            currentMode = .inIntro
+                        } label: {
+                            Image(systemName: "house.fill").foregroundColor(.white)
+                        }
+                        .font(.title3)
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color("Green"), in: Circle())
+                        
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                    
+                    
                     HStack {
                         Text("Difficulty:")
                             .font(.system(.subheadline, design: .rounded))

@@ -30,6 +30,18 @@ struct HomeView: View {
                     Text("Snowflake Paper Cutting Process")
                         .foregroundColor(.black)
                         .font(.subheadline.bold())
+                    
+                    Spacer()
+                    
+                    Button {
+                        currentMode = .inIntro
+                    } label: {
+                        Image(systemName: "house.fill").foregroundColor(.white)
+                    }
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(Color("Blue"), in: Circle())
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()

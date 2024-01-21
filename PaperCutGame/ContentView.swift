@@ -24,7 +24,7 @@ struct ContentView: View {
 
         GeometryReader { proxy in
             let size = proxy.size
-
+            
             if endAnimation {
                 switch currentMode {
                     
