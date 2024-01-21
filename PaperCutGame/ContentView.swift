@@ -24,27 +24,22 @@ struct ContentView: View {
 
         GeometryReader { proxy in
             let size = proxy.size
-            
+                                                
             if endAnimation {
                 switch currentMode {
                     
-                    // homepage
                     case .inIntro:
                         IntroView(screentSize: size, currentMode: $currentMode)
                     
-                    // explore more
                     case .inExplore:
                         ExploreView(screentSize: size, currentMode: $currentMode)
                     
-                    // tutorial
                     case .inStep:
                         HomeView(screentSize: size, currentMode: $currentMode)
                     
-                    // game page
                     case .inGame:
                         GameView(screentSize: size, currentMode: $currentMode, score: $score)
                     
-                    // result page
                     default:
                         AboutView(screentSize: size, currentMode: $currentMode, score: $score)
                 }
