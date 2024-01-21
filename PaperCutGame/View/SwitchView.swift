@@ -23,7 +23,9 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
     var body: some View {
             VStack {
                 
-                headContent()
+                headContent().padding(.top)
+
+                Text("\(getIndex() + 1) / \(count)").font(.headline)
                 
                 Spacer()
                 

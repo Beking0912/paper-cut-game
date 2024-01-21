@@ -27,7 +27,7 @@ struct AboutView: View {
                 Text("\(score) pts")
                     .font(.largeTitle.bold())
                     .foregroundColor(.primary)
-                    .offset(y: -100)
+                    .offset(y: -90)
 
 
                 
@@ -43,10 +43,6 @@ struct AboutView: View {
                     Color("Green"),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(Color("Blue"), lineWidth: 2)
-//                )
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
                 
 
@@ -57,11 +53,11 @@ struct AboutView: View {
                 }
                 .frame(width: screentSize.width - 80)
                 .font(.title3.bold())
-                .foregroundColor(Color("Blue"))
+                .foregroundColor(.white)
                 .padding(15)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color("Blue"), lineWidth: 2)
+                .background(
+                    Color("Blue"),
+                    in: RoundedRectangle(cornerRadius: 15)
                 )
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
                 .padding()

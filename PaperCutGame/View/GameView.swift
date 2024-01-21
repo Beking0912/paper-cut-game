@@ -24,38 +24,46 @@ struct GameView: View {
         
         HStack(spacing: 0) {
                 VStack {
-                    HStack {
-                        Text("ROUND \(GameInfos[roundNumber].round)")
-                            .font(.largeTitle.bold())
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Spacer()
-                        
-                        Button {
-                            currentMode = .inIntro
-                        } label: {
-                            Image(systemName: "house.fill").foregroundColor(.white)
+                    
+                    VStack {
+                        HStack {
+                            Text("ROUND \(GameInfos[roundNumber].round)")
+                                .font(.largeTitle.bold())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Spacer()
+                            
+                            Button {
+                                currentMode = .inIntro
+                            } label: {
+                                Image(systemName: "house.fill").foregroundColor(.white)
+                            }
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color("Green"), in: Circle())
+                            
                         }
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color("Green"), in: Circle())
+
                         
+                        HStack {
+                            Text("Difficulty:")
+                                .font(.system(.subheadline, design: .rounded))
+                            
+                            Text(GameInfos[roundNumber].difficulty)
+                                .font(.system(.subheadline, design: .rounded))
+                                .foregroundColor(Color("DarkRed"))
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    .padding()
+                    .background(
+                        Color("Green").opacity(0.2),
+                        in: RoundedRectangle(cornerRadius: 15)
+                    )
+                    .padding(.horizontal)
                     
                     
-                    HStack {
-                        Text("Difficulty:")
-                            .font(.system(.subheadline, design: .rounded))
-                        
-                        Text(GameInfos[roundNumber].difficulty)
-                            .font(.system(.subheadline, design: .rounded))
-                            .foregroundColor(Color("DarkRed"))
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 20)
                     
                     Spacer()
 
@@ -83,14 +91,20 @@ struct GameView: View {
                                 self.showNextButton = true
                                 isPopupPresented.toggle()
                             }) {
-                                Image(GameInfos[roundNumber].optionImages[index])
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: (screentSize.width - 50) / 3)
-                                    .border(.gray, width: self.selectedAnswer == index ? 2 : 0)
+                                VStack {
+                                    Image(systemName: self.selectedAnswer == index ? "checkmark.square.fill" : "square")
+                                        .font(Font.system(size: 24))
+                                        .foregroundColor(self.selectedAnswer == index ? Color("Green") : .gray)
+                                    
+                                    Image(GameInfos[roundNumber].optionImages[index])
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: (screentSize.width - 60) / 3)
+                                        .border(Color("Green"), width: self.selectedAnswer == index ? 2 : 0)
+                                }
                             }
                         }
-                    }.padding(.vertical, 5)
+                    }
                                 
                     Spacer()
                     
@@ -103,11 +117,11 @@ struct GameView: View {
                                     screentSize: screentSize,
                                     finished: self.roundNumber == (GameInfos.count - 1),
                                     points: self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                                        ? "+\(GameInfos[roundNumber].score) pts 🎉"
-                                        : "+0 pts 😔",
+                                        ? "+\(GameInfos[roundNumber].score)"
+                                        : "+0",
                                     message: self.selectedAnswer == GameInfos[roundNumber].correctAnswer
-                                        ? "Awesome! Correct answer!"
-                                        : "Oops! Not quite there.",
+                                        ? "Awesome! Correct answer! 🎉"
+                                        : "Oops! Not quite there. 😔",
                                     onNext: {
                                         isPopupPresented.toggle()
                                         
@@ -156,13 +170,16 @@ struct PopupView: View {
     var body: some View {
         VStack {
             Text(points)
-                .font(.largeTitle.bold())
+                .font(.system(size: 60))
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundColor(Color("Green"))
-                .padding(.bottom, 5)
+            
+            +   Text("pts")
+                .font(.title.bold())
+                .foregroundColor(Color("Green"))
                         
             Text(message)
                 .font(.title3)
-//                .fontWeight(.semibold)
 
             
             Spacer()
@@ -176,13 +193,9 @@ struct PopupView: View {
                 .foregroundColor(.white)
                 .padding(15)
                 .background(
-                    Color("Blue"),
+                    .gray.opacity(0.6),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(Color("Blue"), lineWidth: 2)
-//                )
                 
                 
 
@@ -196,13 +209,10 @@ struct PopupView: View {
                     Color("Green"),
                     in: RoundedRectangle(cornerRadius: 15)
                 )
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(Color("Green"), lineWidth: 2)
-//                )
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom)
         .frame(width: screentSize.width - 80, height: screentSize.height / 4)
         .background(Color("Background"))
         .cornerRadius(15)
