@@ -20,6 +20,8 @@ struct ExploreView: View {
                 SwitchView(
                     screentSize: screentSize,
                     count: intros.count,
+                    indexButtonType: "circle",
+                    showProgress: true,
                     currentMode: $currentMode
                 ) {
                     VStack {
@@ -28,7 +30,7 @@ struct ExploreView: View {
                         
                         Text("Swipe left to switch content.")
                             .font(.subheadline)
-                    }
+                    }.padding(.top)
                 } mainContent: {
                     
                     ForEach(intros) { intro in

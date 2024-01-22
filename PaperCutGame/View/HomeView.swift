@@ -12,139 +12,75 @@ struct HomeView: View {
     var screentSize : CGSize
     
     @Binding var currentMode: GameMode
-    
-    @State var offset : CGFloat = 0
-    
+        
     var body: some View {
             VStack {
                 
-                // head
-                Button  {
-                } label: {
-                    Image("snowflake")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(Color("Blue"))
-                        .frame(width: 30, height: 30)
-                    
-                    Text("Snowflake Paper Cutting Process")
-                        .foregroundColor(.black)
-                        .font(.subheadline.bold())
-                    
-                    Spacer()
-                    
-                    Button {
-                        currentMode = .inIntro
+                
+                SwitchView(
+                    screentSize: screentSize,
+                    count: steps.count,
+                    indexButtonType: "dot",
+                    showProgress: false,
+                    currentMode: $currentMode
+                ) {
+                    Button  {
                     } label: {
-                        Image(systemName: "house.fill").foregroundColor(.white)
+                        Image("snowflake")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(Color("Blue"))
+                            .frame(width: 30, height: 30)
+                        
+                        Text("Snowflake Paper Cutting Process")
+                            .foregroundColor(.black)
+                            .font(.subheadline.bold())
+                        
+                        Spacer()
+                        
+                        Button {
+                            currentMode = .inIntro
+                        } label: {
+                            Image(systemName: "house.fill").foregroundColor(.white)
+                        }
+                        .font(.title3)
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color("Blue"), in: Circle())
                     }
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color("Blue"), in: Circle())
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-                
-                Spacer()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                } mainContent: {
+                    
+                    ForEach(steps) { step in
+                        VStack {
+                            Image(step.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: screentSize.height / 3)
+                            
+                            VStack(alignment: .leading, spacing: 20) {
+                                Text(step.title)
+                                    .font(.largeTitle.bold())
                                 
-                // content
-                OffsetPageTabView(offset: $offset) {
-                    HStack(spacing: 0) {
-                        ForEach(steps) { step in
-                            VStack {
-                                Image(step.image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: screentSize.height / 3)
-                                
-                                VStack(alignment: .leading, spacing: 20) {
-                                    Text(step.title)
-                                        .font(.largeTitle.bold())
-                                    
-                                    Text(step.description)
-                                        .font(.title3)
-//                                        .fontWeight(.semibold)
-                                        .foregroundColor(.primary)
-                                }
-                                .padding(.top, 60)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(step.description)
+                                    .font(.title3)
+                                    .foregroundColor(.primary)
                             }
-                            .padding()
-                            .frame(width: screentSize.width)
+                            .padding(.top, 60)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                        .padding()
+                        .frame(width: screentSize.width)
                     }
+                    
+                } footContent: {
+                    EmptyView()
                 }
-                
-                Spacer()
-                
-                // foot
-                HStack(alignment:.bottom) {
-                    
-                    // left index
-                    HStack(spacing: 12) {
-                        ForEach(steps.indices, id: \.self) { index in
-                            Capsule()
-                                .fill(.black)
-                                .frame(width: getIndex() == index ? 20 : 7, height: 7)
-                        }
-                    }
-                    .overlay(
-                        Capsule()
-                            .fill(.black)
-                            .frame(width: 20, height: 7)
-                            .offset(x: getIndicatorOffset())
-                        ,alignment: .leading
-                    )
-                    .offset(x: 10, y: -15)
-                    
-                    Spacer()
-                    
-                    // right button
-                    if getIndex() == steps.count - 1 {
-                        Button  {
-                            currentMode = .inGame
-                        } label: {
-                            Text("Start Game!")
-                                .font(.title2.bold())
-                                .foregroundColor(.white)
-                                .padding(20)
-                                .background(
-                                    steps[getIndex()].color,
-                                    in: RoundedRectangle(cornerRadius: 30)
-                                )
-                        }
-                    } else {
-                        Button  {
-                            let index = min(getIndex() + 1, steps.count - 1)
-                            offset = CGFloat(index) * screentSize.width
-                        } label: {
-                            Image(systemName: "chevron.right")
-                                .font(.title2.bold())
-                                .foregroundColor(.white)
-                                .padding(20)
-                                .background(steps[getIndex()].color, in: Circle())
-                        }
-                    }
-                }
-                .padding(.horizontal, 20)
+                .frame(width: screentSize.width, height: screentSize.height)
             }
             .background(Color("Background"))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .animation(.easeOut, value: getIndex())
-    }
-    
-    
-    func getIndicatorOffset() -> CGFloat {
-        let progress = offset / screentSize.width
-        let maxWidth : CGFloat = 12 + 7
-        return progress * maxWidth
-    }
-    
-    func getIndex() -> Int {
-        let progress = round(offset / screentSize.width)
-        let index = min(Int(progress), steps.count - 1)
-        return index
     }
 }
 
