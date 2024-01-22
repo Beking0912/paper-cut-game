@@ -28,13 +28,13 @@ struct SplashScreen: View {
                 
                 Text("✏️")
                     .font(.largeTitle.bold())
-                    .scaleEffect(circleAnimation1 ? 1 : 0)
+                    .scaleEffect(circleAnimation1 ? 1 : 0.01)
                     .offset(x: -110, y: 0)
                 
                 
                 Text("✂️")
                     .font(.largeTitle.bold())
-                    .scaleEffect(circleAnimation2 ? 1 : 0)
+                    .scaleEffect(circleAnimation2 ? 1 : 0.01)
                     .offset(x: 110, y: 0)
                 
                 
@@ -88,11 +88,8 @@ struct SplashScreen: View {
             }
             
             withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05).delay(1.2)) {
+                currentMode = .inIntro
                 endAnimation.toggle()
-                
-                if endAnimation == true {
-                    currentMode = .inIntro
-                }
             }
         }
     }
