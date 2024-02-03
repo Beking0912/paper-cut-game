@@ -28,7 +28,9 @@ struct SwitchView<HeadContent: View, MainContent: View, FootContent: View>: View
                 headContent()
 
                 if showProgress {
-                    Text("\(getIndex() + 1) / \(count)").font(.headline)
+                    Text("\(getIndex() + 1) / \(count)")
+                        .font(.headline)
+                        .foregroundColor(.black)
                 }
                 
                 Spacer()

@@ -26,7 +26,7 @@ struct AboutView: View {
                 
                 Text("\(score) pts")
                     .font(.largeTitle.bold())
-                    .foregroundColor(.primary)
+                    .foregroundColor(.black)
                     .offset(y: -90)
 
 
@@ -44,6 +44,10 @@ struct AboutView: View {
                     in: RoundedRectangle(cornerRadius: 15)
                 )
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                .onTapGesture {
+                    currentMode = .inGame
+                    score = 0
+                }
                 
 
                 
@@ -61,6 +65,10 @@ struct AboutView: View {
                 )
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
                 .padding()
+                .onTapGesture {
+                    currentMode = .inExplore
+                    score = 0
+                }
                 
                 
                 
@@ -76,7 +84,9 @@ struct AboutView: View {
                         .stroke(Color("Blue"), lineWidth: 2)
                 )
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
-                
+                .onTapGesture {
+                    currentMode = .inIntro
+                }
                 
                 
 

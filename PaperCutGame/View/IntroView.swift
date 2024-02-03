@@ -28,7 +28,7 @@ struct IntroView: View {
                     
 
                     Text("Learn Chinese paper cutting basics in a quick tutorial, then dive into the world of symmetrical art challenges.")
-                        .foregroundColor(.primary)
+                        .foregroundColor(.black)
                         .padding(.horizontal, 20)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, 40)
@@ -49,7 +49,10 @@ struct IntroView: View {
                         in: RoundedRectangle(cornerRadius: 15)
                     )
                     .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
-                    
+                    .onTapGesture {
+                        currentMode = .inStep
+                    }
+
                     
                     Button("Start Game") {
                         currentMode = .inGame
@@ -64,6 +67,9 @@ struct IntroView: View {
                     )
                     .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
                     .padding()
+                    .onTapGesture {
+                        currentMode = .inGame
+                    }
                     
                     
                     Button("Explore More") {
@@ -78,6 +84,9 @@ struct IntroView: View {
                             .stroke(Color("Blue"), lineWidth: 2)
                     )
                     .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
+                    .onTapGesture {
+                        currentMode = .inExplore
+                    }
                     
                     
                     Spacer()

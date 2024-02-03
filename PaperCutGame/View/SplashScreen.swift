@@ -18,7 +18,6 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            Color("Blue")
             
             Group {
                 SplashShape()
@@ -28,13 +27,13 @@ struct SplashScreen: View {
                 
                 Text("✏️")
                     .font(.largeTitle.bold())
-                    .scaleEffect(circleAnimation1 ? 1 : 0.01)
+                    .scaleEffect(circleAnimation1 ? 1 : 0.1)
                     .offset(x: -110, y: 0)
                 
                 
                 Text("✂️")
                     .font(.largeTitle.bold())
-                    .scaleEffect(circleAnimation2 ? 1 : 0.01)
+                    .scaleEffect(circleAnimation2 ? 1 : 0.1)
                     .offset(x: 110, y: 0)
                 
                 
@@ -51,8 +50,7 @@ struct SplashScreen: View {
             
             
             Text("Paper Cutting \nGame")
-                .font(.title2)
-                .bold()
+                .font(.title2.bold())
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
             
@@ -66,14 +64,14 @@ struct SplashScreen: View {
                     .font(.title2)
                     .fontWeight(.semibold)
             }
-            .frame(maxHeight: .infinity,alignment: .bottom)
+            .frame(maxHeight: .infinity, alignment: .bottom)
             .foregroundColor(.white)
-            .padding(.bottom,getSafeArea().bottom == 0 ? 15 : getSafeArea().bottom)
             .opacity(startAnimation ? 1 : 0)
             .opacity(endAnimation ? 0 : 1)
         }
         .offset(y: endAnimation ? (-getRect().height * 1.5) : 0)
-        .ignoresSafeArea()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("Blue"))
         .onAppear {
             withAnimation(.spring().delay(0.15)) {
                 circleAnimation1.toggle()
@@ -87,9 +85,11 @@ struct SplashScreen: View {
                 circleAnimation2.toggle()
             }
             
-            withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05).delay(1.2)) {
-                currentMode = .inIntro
-                endAnimation.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 1.05, blendDuration: 1.05).delay(0.0)) {
+                    currentMode = .inIntro
+                    endAnimation.toggle()
+                }
             }
         }
     }
@@ -102,19 +102,9 @@ struct SplashScreen_Previews: PreviewProvider {
 }
 
 
-extension View{
+extension View {
     func getRect() -> CGRect {
         return UIScreen.main.bounds
-    }
-    
-    func getSafeArea() -> UIEdgeInsets {
-        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-            return .zero
-        }
-        guard let safeArea = screen.windows.first?.safeAreaInsets else {
-            return .zero
-        }
-        return safeArea
     }
 }
 

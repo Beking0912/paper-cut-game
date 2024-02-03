@@ -27,9 +27,11 @@ struct ExploreView: View {
                     VStack {
                         Text("Symbolic Paper Cutting Designs")
                             .font(.title2.bold())
+                            .foregroundColor(.black)
                         
                         Text("Swipe left to switch content.")
                             .font(.subheadline)
+                            .foregroundColor(.black)
                     }.padding(.top)
                 } mainContent: {
                     
@@ -42,10 +44,12 @@ struct ExploreView: View {
                             
                             Text(intro.ref)
                                 .font(.subheadline)
+                                .foregroundColor(.black)
                                 .padding(.bottom, 20)
                             
                             Text(intro.description)
                                 .font(.title3)
+                                .foregroundColor(.black)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .padding(10)

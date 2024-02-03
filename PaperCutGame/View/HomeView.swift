@@ -62,10 +62,11 @@ struct HomeView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text(step.title)
                                     .font(.largeTitle.bold())
+                                    .foregroundColor(.black)
                                 
                                 Text(step.description)
                                     .font(.title3)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(.black)
                             }
                             .padding(.top, 60)
                             .frame(maxWidth: .infinity, alignment: .leading)

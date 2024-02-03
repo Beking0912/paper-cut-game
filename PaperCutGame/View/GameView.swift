@@ -29,6 +29,7 @@ struct GameView: View {
                         HStack {
                             Text("ROUND \(GameInfos[roundNumber].round)")
                                 .font(.largeTitle.bold())
+                                .foregroundColor(.black)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Spacer()
@@ -49,6 +50,7 @@ struct GameView: View {
                         HStack {
                             Text("Difficulty:")
                                 .font(.system(.subheadline, design: .rounded))
+                                .foregroundColor(.black)
                             
                             Text(GameInfos[roundNumber].difficulty)
                                 .font(.system(.subheadline, design: .rounded))
@@ -81,6 +83,7 @@ struct GameView: View {
                             
                     Text("Guess what the paper unfolds into?\nClick your answer below.")
                         .font(.title3)
+                        .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(20)
                             
@@ -170,7 +173,7 @@ struct PopupView: View {
     var body: some View {
         VStack {
             Text(points)
-                .font(.system(size: 60))
+                .font(.system(size: 80))
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundColor(Color("Green"))
             
@@ -180,6 +183,7 @@ struct PopupView: View {
                         
             Text(message)
                 .font(.title3)
+                .foregroundColor(.black)
 
             
             Spacer()
