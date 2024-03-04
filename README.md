@@ -10,8 +10,9 @@ Technologically, I utilized Swift for app development, incorporating captivating
 By creating this app, my aspiration is for users to appreciate the artistic beauty of traditional Chinese paper cutting, fostering a connection with the cultural heritage. Moreover, I hope to inspire players to try their hand at real-life paper cutting, blending virtual entertainment with a tangible and culturally rich experience.
 
 # How to Play
-1. Open the .swiftpm file on XCode or Swift Playground.
-2. Run it on your device.
+1. Unzip The .swiftpm file
+2. Open the .swiftpm file on XCode or Swift Playground.
+3. Run it on your device.
 
 # Preview
 ![preview.png](https://s2.loli.net/2024/02/07/rQLubJGxWi8NjyV.png)
