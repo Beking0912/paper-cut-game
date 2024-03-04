@@ -1,4 +1,5 @@
 # Paper-cutting Game
+This game is the result of my unique vision and creativity, built from the ground up with original ideas and mechanics. Every aspect, from the storyline to gameplay, is a product of my imagination, designed to offer a fresh and unique experience.
 
 # Game Design
 Embarking on the fascinating journey of game design, my inspiration drew from the ancient Chinese art of paper cutting, an enchanting craft steeped in intricate designs. Rooted in rural communities, paper cutting not only symbolizes marital bliss, prosperity, and harmony but also serves as a storytelling medium, reflecting historical events and values.
